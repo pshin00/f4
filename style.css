@@ -1,11 +1,136 @@
+@keyframes logoFloat {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+@keyframes emerge {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bloom {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+        box-shadow: 0 0 0 0 rgba(81, 186, 255, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 0 40px 15px rgba(81, 186, 255, 0.4);
+    }
+}
+
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #1a2228;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.5s forwards;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.7s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo-container {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: emerge 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0; /* Start invisible */
+    position: relative;
+}
+
+.logo-container::after {
+    content: '';
+    position: absolute;
+    width: 65%;
+    height: 65%;
+    background: rgba(81, 186, 255, 0.15);
+    border-radius: 8px;
+    animation: bloom 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+}
+
+.content {
+    max-width: 800px;
+    margin: 4rem auto; /* Increased margin */
+    padding: 0 1rem;
+    margin-top: auto; /* Push content to bottom */
+    padding-bottom: 4rem; /* Add some bottom padding */
+}
+
 h1 {
-    color: #333;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
 }
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
 button {
     padding: 10px 20px;
     font-size: 16px;
